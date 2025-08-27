@@ -3,11 +3,11 @@ package models
 import "github.com/google/uuid"
 
 type User struct {
-	id uuid.UUID `uuid:"id"`
-	name string	`name`
-	email string
-	password string
-	_type string
+	id uuid.UUID `json:"id"`
+	name string `json:"name"`
+	email string `json:"email"`
+	password string `json:"password"`
+	_type string `json:"type"`
 }
 
 func (u *User) New(name string, email string, password string, _type string) {
@@ -15,6 +15,10 @@ func (u *User) New(name string, email string, password string, _type string) {
 	email = email
 	password = password
 	_type = _type
+}
+
+func (u *User) GetId() uuid.UUID {
+	return u.id
 }
 
 func (u *User) GetName() string {
