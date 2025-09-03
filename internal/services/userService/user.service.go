@@ -1,4 +1,4 @@
-package userservice
+package userService
 
 import (
 	"context"
@@ -7,43 +7,42 @@ import (
 	"github.com/KaiqueIvo04/api-ecommerce-go/pkg/port"
 )
 
-type userService struct {
+type UserService struct {
 	userRepo port.IUserRepository
 }
 
 func New(userRepo port.IUserRepository) port.IUserService {
-	return &userService{
+	return &UserService{
 		userRepo: userRepo,
 	}
 }
 
 // Add implements port.IUserService.
-func (u *userService) Add(ctx context.Context, user *models.User) error {
-	user.New(user.GetName(), user.GetEmail(), user.GetPassword(), user.GetType())
-	return u.userRepo.Create(ctx, user)
+func (u *UserService) Create(ctx context.Context, user models.User) (models.User, error) {
+	return u.userRepo.Insert(ctx, user)
 }
 
 // Count implements port.IUserService.
-func (u *userService) Count(ctx context.Context) (int64, error) {
+func (u *UserService) Count(ctx context.Context) (int64, error) {
 	panic("unimplemented")
 }
 
 // GetAll implements port.IUserService.
-func (u *userService) GetAll(ctx context.Context) ([]*models.User, error) {
+func (u *UserService) GetAll(ctx context.Context) ([]*models.User, error) {
 	panic("unimplemented")
 }
 
 // GetByID implements port.IUserService.
-func (u *userService) GetByID(ctx context.Context, id string) (*models.User, error) {
+func (u *UserService) GetByID(ctx context.Context, id string) (*models.User, error) {
 	panic("unimplemented")
 }
 
 // Remove implements port.IUserService.
-func (u *userService) Remove(ctx context.Context, id string) error {
+func (u *UserService) Remove(ctx context.Context, id string) error {
 	panic("unimplemented")
 }
 
 // Update implements port.IUserService.
-func (u *userService) Update(ctx context.Context, user *models.User) error {
+func (u *UserService) Update(ctx context.Context, user *models.User) error {
 	panic("unimplemented")
 }

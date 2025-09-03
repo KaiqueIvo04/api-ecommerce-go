@@ -9,7 +9,7 @@ import (
 type IUserRepository interface {
 	GetById(ctx context.Context, id string) (*models.User, error)
 	GetAll(ctx context.Context) ([]*models.User, error)
-	Create(ctx context.Context, user *models.User) error
+	Insert(ctx context.Context, user models.User) (models.User, error)
 	Update(ctx context.Context, user *models.User) error
 	Delete(ctx context.Context, id string) (bool, error)
 }
